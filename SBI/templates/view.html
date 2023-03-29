@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>view</title>
+</head>
+<style>
+img {
+  width: 100%;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+<body>
+{% extends "base.html" %}
+{% block body %}
+
+<h1>online appointment table </h1>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>account_number</th>
+        <th>full_name</th>
+        <th>mobile_number</th>
+        <th>email</th>
+        <th>massage</th>
+        <th>date</th>
+        <th>img</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for mobile in posts%}
+      <tr>
+        <td>{{mobile.account_number}}</td>
+        <td>{{mobile.full_name}}</td>
+        <td>{{mobile.mobile_number}}</td>
+        <td>{{mobile.email}}</td>
+        <td>{{mobile.massage}}</td>
+        <td>{{mobile.date}}</td>
+          <td><img src="{{ url_for('static', filename = 'images/download.jpeg') }}" alt=""></td>
+        <td><a href="/edit/{{mobile.account_number}}"><button>Edit</button></a></td>
+        <td><a href="/delete/{{mobile.account_number}}"><button>Delete</button></a></td>
+      </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+<h2> Add online appointment </h2>
+<a href="/edit/0"><button>Add</button></a><br><br>
+<a href="/"><button>home page</button></a><br><br>
+<a href="/logout"><button>Logout</button></a>
+
+
+{% endblock %}
+</body>
+</html>
